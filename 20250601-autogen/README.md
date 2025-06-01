@@ -24,6 +24,18 @@ or if you familiar with `uv` already
 uv sync
 ```
 
+3. Activate the virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+When you want to deactivate the virtual environment, you can use:
+
+```bash
+deactivate
+```
+
 ## Configuration
 
 Add your OpenAI API key and other environment variables to the `.env` file based on your experiment.

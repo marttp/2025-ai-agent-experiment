@@ -15,9 +15,9 @@ from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.messages import TextMessage
 from autogen_core import CancellationToken
 import json
-from autogen_ext.models.cache import CHAT_CACHE_VALUE_TYPE
-from autogen_ext.cache_store.redis import RedisStore
-import redis
+# from autogen_ext.models.cache import CHAT_CACHE_VALUE_TYPE
+# from autogen_ext.cache_store.redis import RedisStore
+# import redis
 
 
 async def main():
@@ -39,12 +39,19 @@ async def main():
         model_client=model_client_ollama,
         system_message="You're a helpful personal assistant.",
     )
-    
+
     while True:
         user_message = input("User: ")
         if user_message == "exit":
             break
 
-        assistant_agent.send(TextMessage(content=user_message))
+        cancellation_token = CancellationToken()
+        message = TextMessage(content=user_message, source="user")
+        response = await assistant_agent.on_messages(
+            messages=[message],
+            cancellation_token=cancellation_token,
+        )
+        print(f"{response.chat_message.content}\n{response.chat_message.models_usage}")
+
 
 asyncio.run(main())

@@ -6,7 +6,7 @@ from autogen_agentchat.agents import AssistantAgent, CodeExecutorAgent
 from autogen_agentchat.ui import Console
 from autogen_agentchat.messages import MultiModalMessage
 from autogen_core import Image
-# from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
+from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 # from autogen_ext.code_executors.docker import DockerCommandLineCodeExecutor
 
 async def get_weather(city: str) -> str:
@@ -70,24 +70,26 @@ async def vision():
     stream = vision_agent.run_stream(task=message)
     await Console(stream)
 
-# async def code_executor():
-#     local_code_executor = LocalCommandLineCodeExecutor(work_dir="coding")
-#     docker_code_executor = DockerCommandLineCodeExecutor(work_dir="coding")
-#     await docker_code_executor.start()
+# Support writing code and code execution
+async def code_executor():
+    local_code_executor = LocalCommandLineCodeExecutor(work_dir="coding")
+    # docker_code_executor = DockerCommandLineCodeExecutor(work_dir="coding")
+    # await docker_code_executor.start()
 
-#     code_executor_agent = CodeExecutorAgent(
-#         name="code_executor",
-#         code_executor=docker_code_executor,
-#     )
+    code_executor_agent = CodeExecutorAgent(
+        name="code_executor",
+        code_executor=local_code_executor,
+    )
 
-#     stream = code_executor_agent.run_stream(task="""
-# ```python
-# print("Hello World")
-# ``` 
-# """)
+    stream = code_executor_agent.run_stream(task="""
+```python
+print("Hello World")
+``` 
+""")
     
-#     await Console(stream)
-#     await docker_code_executor.stop()
+    await Console(stream)
+    # await docker_code_executor.stop()
 
 # asyncio.run(main())
-asyncio.run(vision())
+# asyncio.run(vision())
+asyncio.run(code_executor())

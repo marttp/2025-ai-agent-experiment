@@ -61,6 +61,22 @@ Start the AutoGen Studio UI with:
 autogenstudio ui --port 8080
 ```
 
+## API
+
+You can use the API to run the team with a task.
+
+Example
+
+```bash
+UV_ENV_FILE=.env python api/api.py
+```
+
+And yes, you can serve from AutoGen Studio
+
+```bash
+autogenstudio serve --team team.json --port 8080
+```
+
 ## Features
 
 - AI-powered chat interface

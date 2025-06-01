@@ -40,6 +40,19 @@ Example
 UV_ENV_FILE=.env uv run ./agent/chat_agent.py
 ```
 
+## Docker executor
+
+If you use docker desktop, you can use docker executor without setting DOCKER_HOST environment variable.
+
+Otherwise, you need to set DOCKER_HOST environment variable.
+
+Example for Colima
+
+```bash
+export DOCKER_HOST=unix:///Users/xxxxxxxxxxx/.colima/default/docker.sock
+UV_ENV_FILE=.env uv run ./agent/agent.py
+```
+
 ## Features
 
 - AI-powered chat interface

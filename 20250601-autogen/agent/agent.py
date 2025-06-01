@@ -72,14 +72,20 @@ async def vision():
 
 # Support writing code and code execution
 async def code_executor():
+    # Set DOCKER_HOST environment variable for Docker client if you didn't use Docker Desktop
+    # os.environ["DOCKER_HOST"] = "unix:///........"
+    
     local_code_executor = LocalCommandLineCodeExecutor(work_dir="coding")
-    docker_code_executor = DockerCommandLineCodeExecutor(work_dir="coding")
+    docker_code_executor = DockerCommandLineCodeExecutor(
+        image="python:3.13",
+        work_dir="coding"
+    )
     await docker_code_executor.start()
 
     code_executor_agent = CodeExecutorAgent(
         name="code_executor",
         # code_executor=local_code_executor,
-        code_executor=docker_code_executor,
+        code_executor=docker_code_executor
     )
 
     stream = code_executor_agent.run_stream(task="""

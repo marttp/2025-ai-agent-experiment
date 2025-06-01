@@ -52,29 +52,29 @@ Response with 'APPROVE' if the text addresses all feedback.
         termination_condition=termination,
     )
 
-    # society_of_mind_agent = SocietyOfMindAgent(
-    #     name="society_of_mind",
-    #     team=team,
-    #     model_client=model_client_ollama,
-    # )
+    society_of_mind_agent = SocietyOfMindAgent(
+        name="society_of_mind",
+        team=team,
+        model_client=model_client_ollama,
+    )
 
-    # transltor_agent = AssistantAgent(
-    #     name="translator",
-    #     model_client=model_client_ollama,
-    #     system_message="Translate the text to Thai.",
-    # )
+    transltor_agent = AssistantAgent(
+        name="translator",
+        model_client=model_client_ollama,
+        system_message="Translate the text to Thai.",
+    )
 
-    # final_team = RoundRobinGroupChat(
-    #     participants=[society_of_mind_agent, transltor_agent],
-    #     max_turns=2,
-    # )
+    final_team = RoundRobinGroupChat(
+        participants=[society_of_mind_agent, transltor_agent],
+        max_turns=2,
+    )
 
-    # with open("team.json", "w") as f:
-    #     json.dump(final_team.dump_component().model_dump(), f, indent=4)
+    with open("team.json", "w") as f:
+        json.dump(final_team.dump_component().model_dump(), f, indent=4)
 
+    # stream = team.run_stream(task="Write a short story about cat.")
     # stream = final_team.run_stream(task="Write a short story about cat.")
-    stream = team.run_stream(task="Write a short story about cat.")
-    await Console(stream)
+    # await Console(stream)
 
 
 asyncio.run(main())

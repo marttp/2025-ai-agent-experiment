@@ -2,7 +2,11 @@ import os
 import asyncio
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_core.models import ModelInfo, ModelFamily
-from autogen_agentchat.agents import AssistantAgent, SocietyOfMindAgent
+from autogen_agentchat.agents import (
+    AssistantAgent,
+    CodeExecutorAgent,
+    SocietyOfMindAgent,
+)
 from autogen_agentchat.ui import Console
 from autogen_agentchat.conditions import (
     MaxMessageTermination,
@@ -12,6 +16,16 @@ from autogen_agentchat.conditions import (
 )
 from autogen_agentchat.teams import RoundRobinGroupChat
 import json
+from pydantic import SecretStr
+from typing import Any
+
+
+# For exporting API Key field
+class SecretStrEncoder(json.JSONEncoder):
+    def default(self, obj: Any) -> Any:
+        if isinstance(obj, SecretStr):
+            return obj.get_secret_value() if obj else None
+        return super().default(obj)
 
 
 async def main():
@@ -70,7 +84,9 @@ Response with 'APPROVE' if the text addresses all feedback.
     )
 
     with open("team.json", "w") as f:
-        json.dump(final_team.dump_component().model_dump(), f, indent=4)
+        # Use the custom encoder to handle SecretStr objects
+        component_data = final_team.dump_component().model_dump()
+        json.dump(component_data, f, indent=4, cls=SecretStrEncoder)
 
     # stream = team.run_stream(task="Write a short story about cat.")
     # stream = final_team.run_stream(task="Write a short story about cat.")

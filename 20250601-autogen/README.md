@@ -53,11 +53,20 @@ export DOCKER_HOST=unix:///Users/xxxxxxxxxxx/.colima/default/docker.sock
 UV_ENV_FILE=.env uv run ./agent/agent.py
 ```
 
+## AutoGen Studio UI
+
+Start the AutoGen Studio UI with:
+
+```bash
+autogenstudio ui --port 8080
+```
+
 ## Features
 
 - AI-powered chat interface
 - Easy setup with UV package manager
 - Environment-based configuration
+- Web-based UI with AutoGen Studio
 
 # My used resources
 

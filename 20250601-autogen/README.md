@@ -4,9 +4,9 @@ A simple chat application built with AutoGen, enabling AI-powered conversations.
 
 ## Prerequisites
 
-- Python 3.8+
+- Python 3.12+
 - UV package manager (https://github.com/astral-sh/uv)
-- OpenAI API key
+- [Optional] OpenAI API key (Because I used Ollama)
 
 ## Installation
 
@@ -20,12 +20,7 @@ uv add "autogen-ext[openai]"
 
 ## Configuration
 
-1. Create a `.env` file in the project root
-2. Add your OpenAI API key:
-
-```
-OPENAI_API_KEY=your_api_key_here
-```
+Add your OpenAI API key and other environment variables to the `.env` file based on your experiment.
 
 ## Usage
 

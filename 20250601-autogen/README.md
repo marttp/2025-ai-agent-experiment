@@ -39,3 +39,8 @@ UV_ENV_FILE=.env uv run ./agent/chat_agent.py
 - AI-powered chat interface
 - Easy setup with UV package manager
 - Environment-based configuration
+
+# My used resources
+
+- https://youtu.be/VukcfLpuDJY?si=Tm7pYZb9H5J2sM6h
+- https://www.dataleadsfuture.com/build-autogen-agents-with-qwen3-structured-output-thinking-mode/

@@ -16,7 +16,6 @@ from autogen_ext.models.cache import CHAT_CACHE_VALUE_TYPE
 from autogen_ext.cache_store.redis import RedisStore
 import redis
 
-
 async def main():
     model_client_ollama = OpenAIChatCompletionClient(
         model="qwen3:8b",
@@ -42,7 +41,10 @@ async def main():
     #         state = json.load(f)
     #         await assistant_agent.load_state(state)
 
-    redis_instance = redis.Redis()
+    redis_instance = redis.Redis(
+        host=os.environ["REDIS_HOST"],
+        port=os.environ["REDIS_PORT"],
+    )
     cache_store = RedisStore[CHAT_CACHE_VALUE_TYPE](redis_instance)
     state = cache_store.get("assistant_agent")
     if state:
@@ -68,6 +70,5 @@ async def main():
 
     state = await assistant_agent.save_state()
     cache_store.set("assistant_agent", json.dumps(state))
-
 
 asyncio.run(main())

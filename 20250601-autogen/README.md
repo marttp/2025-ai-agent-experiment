@@ -15,7 +15,13 @@ A simple chat application built with AutoGen, enabling AI-powered conversations.
 
 ```bash
 uv add "autogen-agentchat"
-uv add "autogen-ext[openai]"
+uv add "autogen-ext[openai,redis,docker]"
+```
+
+or if you familiar with `uv` already
+
+```bash
+uv sync
 ```
 
 ## Configuration

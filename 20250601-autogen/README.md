@@ -26,8 +26,12 @@ Add your OpenAI API key and other environment variables to the `.env` file based
 
 Start the chat application with:
 
+Note: Update the path depending on your goal
+
+Example
+
 ```bash
-UV_ENV_FILE=.env uv run ./chat/chat.py
+UV_ENV_FILE=.env uv run ./agent/chat_agent.py
 ```
 
 ## Features

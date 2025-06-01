@@ -4,7 +4,7 @@
     "version": 1,
     "component_version": 1,
     "description": "A team that runs a group chat with participants taking turns in a round-robin fashion\n    to publish a message to all.",
-    "label": "RoundRobinGroupChat",
+    "label": "Mart 1st agent team",
     "config": {
         "participants": [
             {

@@ -11,3 +11,9 @@
 - [ ] [AgentOS](https://ag2.ai/)
 - [ ] [AutoGPT](https://docs.agpt.co/)
 - [ ] [Koog](https://github.com/JetBrains/koog/)
+
+## Tools
+
+### Tokenizer calculator
+
+https://platform.openai.com/tokenizer
